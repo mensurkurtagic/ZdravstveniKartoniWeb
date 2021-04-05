@@ -1,0 +1,178 @@
+<div style="width: 100%;">
+   <div class="container">
+
+      <div style="text-align: -webkit-center; margin-top: 25px;">
+         <mat-form-field class="example-full-width">
+            <mat-label>Pretraga po datumu</mat-label>
+            <input matInput [matDatepicker]="picker" (keyup)="applyFilter($event.target.value)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+         </mat-form-field>
+         <table class="full-width">
+            <thead>
+               <tr>
+                  <th style="text-align: center; background: #66afff; font-weight: normal; color: white;" colspan="6">
+                     Rezervacija termina
+                  </th>
+               </tr>
+               <tr style="background-color: #cce4ff;">
+                  <th style="text-align: center;">Doktor</th>
+                  <th style="text-align: center;">Pacijent</th>
+                  <th style="text-align: center;">Datum/vrijeme</th>
+                  <th style="text-align: center;">Razlog posjete</th>
+                  <th style="text-align: center;">Status</th>
+                  <th style="text-align: center;">Odobri/Odbij</th>
+               </tr>
+            </thead>
+
+            <tbody *ngIf="appointments && appointments.length !== 0; else noAppointments;">
+               <tr *ngFor="let app of appointments">
+                  <th> {{app.doctorsName}} </th>
+                  <th> {{app.firstName}} {{app.lastName}} </th>
+                  <th> {{app.dateOfAppointment}} </th>
+                  <th> {{app.reasonForVisit}} </th>
+                  <th style="text-align: center;">
+                     <div id="badge" class="badge-pill badge-warning">
+                        <p id="paragraphMargin">Neobrađen</p>
+                     </div>
+                  </th>
+                  <th style="text-align: center;">
+                     <button mat-mini-fab color="primary" style="margin-right: 5px;"
+                        (click)="approveAppointment(app.userId)">
+                        <mat-icon>check</mat-icon>
+                     </button>
+                     <button mat-mini-fab color="warn" (click)="declineAppointment(app.userId)">
+                        <mat-icon>close</mat-icon>
+                     </button>
+                  </th>
+               </tr>
+            </tbody>
+
+            <ng-template #noAppointments>
+               <tbody>
+                  <tr>
+                     <th></th>
+                     <th></th>
+                     <th></th>
+                     <th></th>
+                     <th></th>
+                     <th></th>
+                  </tr>
+               </tbody>
+            </ng-template>
+         </table>
+      </div>
+
+
+
+      <div style="margin-top: 50px; text-align: center;">
+         <h4>Odobreni termini</h4>
+
+         <div style="text-align: -webkit-center; margin-top: 25px;">
+            <mat-form-field class="example-full-width">
+               <mat-label>Pretraga po datumu</mat-label>
+               <input matInput [matDatepicker]="picker1" (keyup)="applyApprovedFilter($event.target.value)">
+               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+               <mat-datepicker touchUi #picker1></mat-datepicker>
+            </mat-form-field>
+
+            <table class="full-width">
+               <thead>
+                  <tr>
+                     <th style="text-align: center; background: #66afff; font-weight: normal; color: white;"
+                        colspan="5">
+                        Rezervacija termina
+                     </th>
+                  </tr>
+                  <tr style="background-color: #cce4ff;">
+                     <th style="text-align: center;">Doktor</th>
+                     <th style="text-align: center;">Pacijent</th>
+                     <th style="text-align: center;">Datum/vrijeme</th>
+                     <th style="text-align: center;">Razlog posjete</th>
+                     <th style="text-align: center;">Status</th>
+                  </tr>
+               </thead>
+
+               <tbody *ngIf="approvedAppointments && approvedAppointments.length !== 0; else noAppointmentsSuccess;">
+                  <tr *ngFor="let app of approvedAppointments">
+                     <th> {{app.doctorsName}} </th>
+                     <th> {{app.firstName}} {{app.lastName}} </th>
+                     <th> {{app.dateOfAppointment}} </th>
+                     <th> {{app.reasonForVisit}} </th>
+                     <th style="text-align: center;">
+                        <div id="badge" class="badge-pill badge-success">
+                           <p id="paragraphMargin">Obrađen</p>
+                        </div>
+                     </th>
+
+                  </tr>
+               </tbody>
+
+               <ng-template #noAppointmentsSuccess>
+                  <tbody>
+                     <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                     </tr>
+                  </tbody>
+               </ng-template>
+            </table>
+         </div>
+      </div>
+
+      <div style="margin-top: 50px; text-align: center;">
+         <h4>Odbijeni termini</h4>
+
+         <div style="text-align: -webkit-center; margin-top: 25px;">
+            <table class="full-width">
+               <thead>
+                  <tr>
+                     <th style="text-align: center; background: #66afff; font-weight: normal; color: white;"
+                        colspan="5">
+                        Rezervacija termina
+                     </th>
+                  </tr>
+                  <tr style="background-color: #cce4ff;">
+                     <th style="text-align: center;">Doktor</th>
+                     <th style="text-align: center;">Pacijent</th>
+                     <th style="text-align: center;">Datum/vrijeme</th>
+                     <th style="text-align: center;">Razlog posjete</th>
+                     <th style="text-align: center;">Status</th>
+                  </tr>
+               </thead>
+
+               <tbody *ngIf="declinedAppointments && declinedAppointments.length !== 0; else noAppointmentDecline;">
+                  <tr *ngFor="let app of declinedAppointments">
+                     <th> {{app.doctorsName}} </th>
+                     <th> {{app.firstName}} {{app.lastName}} </th>
+                     <th> {{app.dateOfAppointment}} </th>
+                     <th> {{app.reasonForVisit}} </th>
+                     <th style="text-align: center;">
+                        <div id="badge" class="badge-pill badge-danger">
+                           <p id="paragraphMargin">Odbijen</p>
+                        </div>
+                     </th>
+
+                  </tr>
+               </tbody>
+
+               <ng-template #noAppointmentDecline>
+                  <tbody>
+                     <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                     </tr>
+                  </tbody>
+               </ng-template>
+            </table>
+         </div>
+      </div>
+
+   </div>
+</div>

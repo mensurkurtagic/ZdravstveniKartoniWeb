@@ -1,0 +1,74 @@
+<div style="width: 100%;">
+   <div class="container">
+      <div *ngIf="loaded; else noDiseaseRecord;">
+         <h3 style="text-align: center;">Uredite evidenciju</h3>
+         <form [formGroup]="diseaseRecordsModel">
+            <div style="margin-top: 25px;">
+               <div class="d-flex flex-row ml-2 mr-2" style="margin-top: 10px;">
+                  <div class="p-2 flex-fill">
+                     <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Datum posjete</mat-label>
+                        <input matInput placeholder="Datum posjete" formControlName="dateOfVisit">
+                     </mat-form-field>
+                  </div>
+                  <div class="p-2 flex-fill">
+                     <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Amneza, status i nalazi</mat-label>
+                        <input matInput placeholder="Amneza, status i nalazi" formControlName="description">
+                     </mat-form-field>
+                  </div>
+               </div>
+
+               <div class="d-flex flex-row ml-2 mr-2" style="margin-top: 10px;">
+                  <div class="p-2 flex-fill">
+                     <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Dijagnoza</mat-label>
+                        <input matInput placeholder="Dijagnoza" formControlName="diagnose">
+                     </mat-form-field>
+                  </div>
+                  <div class="p-2 flex-fill">
+                     <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Terapija</mat-label>
+                        <input matInput placeholder="Terapija" formControlName="therapy">
+                     </mat-form-field>
+                  </div>
+               </div>
+
+               <div class="d-flex flex-row ml-2 mr-2" style="margin-top: 10px;">
+                  <div class="p-2 flex-fill">
+                     <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Uputnica</mat-label>
+                        <input matInput placeholder="Uputnica" formControlName="orderToDoctor">
+                     </mat-form-field>
+                  </div>
+                  <div class="p-2 flex-fill">
+                     <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Nesposobnost za rad (period)</mat-label>
+                        <input matInput placeholder="Nesposobna za rad (period)" formControlName="canWork">
+                     </mat-form-field>
+                  </div>
+               </div>
+            </div>
+         </form>
+
+
+
+         <div id="buttons">
+            <div id="discardChangesBtn">
+               <button mat-button class="btn" type="button" (click)="discardChanges()"><span
+                     style="color: red; margin-right: 5px;"><strong>X</strong></span><strong>Odustani</strong></button>
+            </div>
+            <div id="acceptChangesBtn">
+               <button mat-button class="btn" type="button" (click)="updateDiseaseRecord()"><span
+                     style="color: green; margin-right: 5px;"><strong>
+                        <mat-icon style="vertical-align: middle;">check</mat-icon>
+                     </strong></span><strong>Spremi</strong></button>
+            </div>
+         </div>
+      </div>
+
+      <ng-template #noDiseaseRecord>
+         <p>Molimo sačekajte..</p>
+      </ng-template>
+   </div>
+</div>

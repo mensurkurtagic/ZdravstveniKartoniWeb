@@ -1,0 +1,79 @@
+.flex-fill {
+  -ms-flex: 1 1 auto !important;
+  flex: 1 1 auto !important;
+}
+.full-width {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 1px solid #999999;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+tbody tr {
+  height: 50px;
+}
+
+table tr:nth-child(odd) {
+  background-color: rgba(0,0,0,.04);
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f3f8;
+}
+
+#newRecordButton {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 25px;
+  background: lightgrey;
+  width: 150px;
+  float: right;
+}
+
+#newReceptButton {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 25px;
+  background: lightgrey;
+  width: 150px;
+}
+
+#buttonNew {
+  border: 1px solid #999999;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+#buttonNew button {
+  width: 150px;
+  outline: none;
+}
+
+#paragraphMargin {
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: 200;
+}
+
+#badge {
+   display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+::ng-deep .mat-card-header-text {
+   width: 100%!important;
+}

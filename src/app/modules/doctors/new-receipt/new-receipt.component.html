@@ -1,0 +1,51 @@
+<div style="width: 100%;">
+   <div class="container">
+      <h3 style="text-align: center;">Kreirajte novi recept</h3>
+      <form [formGroup]="receiptModel">
+         <div style="margin-top: 25px;">
+            <div class="d-flex flex-row ml-2 mr-2" style="margin-top: 10px;">
+               <div class="p-2 flex-fill">
+                  <mat-form-field class="full-width" appearance="fill">
+                     <mat-label>Naziv lijeka</mat-label>
+                     <input matInput placeholder="Naslov recepta" formControlName="title">
+                  </mat-form-field>
+               </div>
+               <div class="p-2 flex-fill">
+                  <mat-form-field class="full-width" appearance="fill">
+                     <mat-label>Dijagnoza</mat-label>
+                     <input matInput placeholder="Tekst recepta" formControlName="description">
+                  </mat-form-field>
+               </div>
+            </div>
+
+            <div class="d-flex flex-row ml-2 mr-2" style="margin-top: 10px;">
+               <div class="p-2 flex-fill">
+                  <mat-form-field class="full-width" appearance="fill">
+                     <mat-label>Terapija</mat-label>
+                     <input matInput placeholder="Opis lijeka" formControlName="medicineDescription">
+                  </mat-form-field>
+               </div>
+               <div class="p-2 flex-fill">
+                  <mat-form-field class="full-width" appearance="fill">
+                     <mat-label>Dodatne napomene</mat-label>
+                     <input matInput placeholder="Terapija" formControlName="therapy">
+                  </mat-form-field>
+               </div>
+            </div>
+         </div>
+      </form>
+
+      <div id="buttons">
+         <div id="discardChangesBtn">
+            <button mat-button class="btn" type="button" (click)="discardChanges()"><span
+                  style="color: red; margin-right: 5px;"><strong>X</strong></span><strong>Odustani</strong></button>
+         </div>
+         <div id="acceptChangesBtn">
+            <button mat-button class="btn" type="button" (click)="createNewReceipt()"><span
+                  style="color: green; margin-right: 5px;"><strong>
+                     <mat-icon style="vertical-align: middle;">check</mat-icon>
+                  </strong></span><strong>Spremi</strong></button>
+         </div>
+      </div>
+   </div>
+</div>

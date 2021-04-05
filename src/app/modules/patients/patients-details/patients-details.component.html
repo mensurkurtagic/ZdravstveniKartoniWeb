@@ -1,0 +1,240 @@
+<div style="width: 100%;">
+   <div class="container">
+      <mat-tab-group mat-align-tabs="start">
+         <mat-tab label="Rezervacija termina">
+            <div style="text-align: -webkit-right;">
+               <div id="buttonNew" style="float: right; margin-top: 15px; margin-bottom: 15px;">
+                  <button mat-button [routerLink]="['createNewAppointment']" class="btn" type="button"><span
+                        style="font-size: larger; color: red; margin-right: 5px;"><strong>+</strong></span><strong>Novi
+                        termin</strong></button>
+               </div>
+            </div>
+            <div style="text-align: -webkit-center; margin-top: 25px;">
+               <table class="full-width">
+                  <thead>
+                     <tr>
+                        <th style="text-align: center; background: #66afff; color: white; font-weight: normal;"
+                           colspan="4">Rezervisani termini
+                        </th>
+                     </tr>
+                     <tr style="background-color: #cce4ff;">
+                        <th style="text-align: center;">Doktor</th>
+                        <th style="text-align: center;">Datum/vrijeme</th>
+                        <th style="text-align: center;">Razlog posjete</th>
+                        <th style="text-align: center;">Status</th>
+                     </tr>
+                  </thead>
+
+                  <tbody *ngIf="appointments && appointments.length !== 0; else noAppointments;">
+                     <tr *ngFor="let app of appointments">
+                        <th> {{app.doctorsName}} </th>
+                        <th> {{app.dateOfAppointment | date: 'dd/MM/yyyy hh:mm:ss a'}} </th>
+                        <th> {{app.reasonForVisit}} </th>
+                        <th style="text-align: center;">
+                           <div *ngIf="app.status == 1; else obradjen;">
+                              <div id="badge" class="badge-pill badge-warning">
+                                 <p id="paragraphMargin">Neobrađen</p>
+                              </div>
+                           </div>
+
+                           <ng-template #obradjen>
+                              <div *ngIf="app.status == 2; else odbijen;">
+                                 <div id="badge" class="badge-pill badge-success">
+                                    <p id="paragraphMargin">Obrađen</p>
+                                 </div>
+                              </div>
+                           </ng-template>
+
+                           <ng-template #odbijen>
+                              <div id="badge" class="badge-pill badge-danger">
+                                 <p id="paragraphMargin">Odbijen</p>
+                              </div>
+                           </ng-template>
+                        </th>
+                     </tr>
+                  </tbody>
+
+                  <ng-template #noAppointments>
+                     <tbody>
+                        <tr>
+                           <th></th>
+                           <th></th>
+                           <th></th>
+                           <th></th>
+                        </tr>
+                     </tbody>
+                  </ng-template>
+               </table>
+            </div>
+         </mat-tab>
+
+         <mat-tab label="Evidencija o bolestima">
+            <div style="margin-top: 25px; text-align: -webkit-center;">
+               <table class="full-width">
+                  <thead>
+                     <tr style="background-color: #007bff; color: #fff; font-weight: lighter;">
+                        <th style="text-align: center;">Datum posjete</th>
+                        <th style="text-align: center;">Amneza, status i nalazi</th>
+                        <th style="text-align: center;">Dijagnoza</th>
+                        <th style="text-align: center;">Terapija</th>
+                        <th style="text-align: center;">Uputnica</th>
+                        <th style="text-align: center;">Nesposobnost za rad (period)</th>
+                     </tr>
+                  </thead>
+
+                  <tbody *ngIf="diseaseRecords && diseaseRecords.length !== 0; else noDiseaseRecords;">
+                     <tr *ngFor="let dr of diseaseRecords">
+                        <th> {{dr.dateOfVisit}} </th>
+                        <th> {{dr.description}} </th>
+                        <th> {{dr.diagnose}} </th>
+                        <th> {{dr.therapy}} </th>
+                        <th> {{dr.orderToDoctor}} </th>
+                        <th style="text-align: center;"> {{dr.canWork}} </th>
+                     </tr>
+                  </tbody>
+
+                  <ng-template #noDiseaseRecords>
+                     <tbody>
+                        <tr>
+                           <th></th>
+                           <th></th>
+                           <th></th>
+                           <th></th>
+                           <th></th>
+                           <th style="text-align: center;"></th>
+                        </tr>
+                     </tbody>
+                  </ng-template>
+               </table>
+            </div>
+         </mat-tab>
+
+         <mat-tab label="Recepti">
+            <div style="margin: 0 auto; margin-top: 25px; text-align: -webkit-center;">
+
+               <div *ngIf="receipts && receipts.length !== 0; else noReceipts;">
+                  <div *ngFor="let receipt of receipts" class="d-flex flex-row ml-2 mr-2" style="margin-top: 10px;">
+                     <div class="p-2 flex-fill">
+                        <mat-card class="example-card" style="border: 1px solid #999999; width: 60%;">
+                           <mat-card-header style="border-bottom: 1px solid #999999;">
+                              <mat-card-title style="font-size: normal;">
+                                 <span style="float: left;">
+                                    Broj kartona: {{receipt.userId}}
+                                 </span>
+
+                                 <span style="float: right; margin-top: -10px;">
+                                    <div *ngIf="receipt.status == 1; else ponisten;">
+                                       <div id="badge" class="badge-pill badge-warning">
+                                          <p id="paragraphMargin">Neiskorišten recept</p>
+                                       </div>
+                                    </div>
+
+                                    <ng-template #ponisten>
+                                       <div id="badge" class="badge-pill badge-danger">
+                                          <p id="paragraphMargin">Iskorišten recept</p>
+                                       </div>
+                                    </ng-template>
+                                 </span>
+
+                              </mat-card-title>
+                           </mat-card-header>
+                           <mat-card-content style="border-bottom: 1px solid #999999;">
+                              <div style="text-align: center;">
+                                 <p style="border-bottom: 1px solid lightgrey; margin-top: 15px;"> {{receipt.title}}
+                                 </p>
+                                 <p style="border-bottom: 1px solid lightgrey;"> {{receipt.description}} </p>
+                                 <p style="border-bottom: 1px solid lightgrey;"> {{receipt.medicineDescription}} </p>
+                                 <p> {{receipt.therapy}} </p>
+                              </div>
+
+                           </mat-card-content>
+                           <div>
+                              <h6 style="text-align: left;">Doktor: {{receipt.doctorName}} </h6>
+                           </div>
+                        </mat-card>
+                     </div>
+                  </div>
+               </div>
+
+               <ng-template #noReceipts>
+                  <div class="p-2 flex-fill">
+                     <p>Nema kreiranih recepata..</p>
+                  </div>
+               </ng-template>
+            </div>
+         </mat-tab>
+
+         <mat-tab label="Detalji">
+            <div *ngIf="!patient; else patientDetails;">
+               Loading..
+            </div>
+
+            <ng-template #patientDetails>
+               <div style="margin-top: 25px;">
+                  <div class="d-flex flex-row ml-2 mr-2" style="margin-top: 10px;">
+                     <div class="p-2 flex-fill">
+                        <mat-form-field class="full-width" appearance="fill">
+                           <mat-label>Ime</mat-label>
+                           <input matInput placeholder="Ime" [value]="patient.firstName" readonly>
+                        </mat-form-field>
+                     </div>
+                     <div class="p-2 flex-fill">
+                        <mat-form-field class="full-width" appearance="fill">
+                           <mat-label>Prezime</mat-label>
+                           <input matInput placeholder="Prezime" [value]="patient.lastName" readonly>
+                        </mat-form-field>
+                     </div>
+                  </div>
+
+                  <div class="d-flex flex-row ml-2 mr-2" style="margin-top: 10px;">
+                     <div class="p-2 flex-fill">
+                        <mat-form-field class="full-width" appearance="fill">
+                           <mat-label>Datum i mjesto rođenja</mat-label>
+                           <input matInput placeholder="Datum i mjesto rođenja" [value]="patient.dateOfBirth" readonly>
+                        </mat-form-field>
+                     </div>
+                     <div class="p-2 flex-fill">
+                        <mat-form-field class="full-width" appearance="fill">
+                           <mat-label>Adresa prebivališta</mat-label>
+                           <input matInput placeholder="Adresa prebivališta" [value]="patient.address" readonly>
+                        </mat-form-field>
+                     </div>
+                  </div>
+
+                  <div class="d-flex flex-row ml-2 mr-2" style="margin-top: 10px;">
+                     <div class="p-2 flex-fill">
+                        <mat-form-field class="full-width" appearance="fill">
+                           <mat-label>Matični broj</mat-label>
+                           <input matInput placeholder="Matični broj" [value]="patient.jmbg" readonly>
+                        </mat-form-field>
+                     </div>
+                     <div class="p-2 flex-fill">
+                        <mat-form-field class="full-width" appearance="fill">
+                           <mat-label>Krvna grupa</mat-label>
+                           <input matInput placeholder="Krvna grupa" [value]="patient.bloodType" readonly>
+                        </mat-form-field>
+                     </div>
+                  </div>
+
+                  <div class="d-flex flex-row ml-2 mr-2" style="margin-top: 10px;">
+                     <div class="p-2 flex-fill">
+                        <mat-form-field class="full-width" appearance="fill">
+                           <mat-label>RH Faktor</mat-label>
+                           <input matInput placeholder="RH Faktor" [value]="patient.rhFaktor" readonly>
+                        </mat-form-field>
+                     </div>
+                     <div class="p-2 flex-fill">
+                        <mat-form-field class="full-width" appearance="fill">
+                           <mat-label>Spol</mat-label>
+                           <input matInput placeholder="Spol" [value]="patient.gender" readonly>
+                        </mat-form-field>
+                     </div>
+                  </div>
+               </div>
+            </ng-template>
+
+         </mat-tab>
+
+      </mat-tab-group>
+   </div>
+</div>

@@ -1,0 +1,121 @@
+<mat-tab-group>
+   <mat-tab label="Registruj doktora">
+      <div class="jumbotron">
+         <div class="container">
+            <div class="row" style="justify-content: center;">
+               <div style="width: 100%; margin: 0 auto;">
+
+                  <form [formGroup]="doctorModel" class="example-form" style="width: 100%; text-align: center;">
+
+                     <mat-form-field class="example-full-width" id="width50percent">
+                        <input matInput formControlName="firstName" placeholder="Ime doktora">
+                     </mat-form-field>
+                     <br>
+
+                     <mat-form-field class="example-full-width" id="width50percent">
+                        <input matInput formControlName="lastName" placeholder="Prezime doktora">
+                     </mat-form-field>
+                     <br>
+
+                     <mat-form-field class="example-full-width" id="width50percent">
+                        <input matInput formControlName="userName" placeholder="Korisničko ime">
+                     </mat-form-field>
+                     <br>
+
+                     <mat-form-field class="example-full-width" id="width50percent">
+                        <input matInput formControlName="password" placeholder="Lozinka">
+                     </mat-form-field>
+                     <br>
+
+                     <div>
+                        <button mat-flat-button color="primary" (click)="createDoctor()">Registruj doktora</button>
+                     </div>
+
+                  </form>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </mat-tab>
+
+   <mat-tab label="Registruj sestricu">
+      <div class="jumbotron">
+         <div class="container">
+            <div class="row" style="justify-content: center;">
+               <div style="width: 100%; margin: 0 auto;">
+
+                  <form [formGroup]="nurseModel" class="example-form" style="width: 100%; text-align: center;">
+
+                     <mat-form-field class="example-full-width" id="width50percent">
+                        <input matInput formControlName="firstName" placeholder="Ime sestrice">
+                     </mat-form-field>
+                     <br>
+
+                     <mat-form-field class="example-full-width" id="width50percent">
+                        <input matInput formControlName="lastName" placeholder="Prezime sestrice">
+                     </mat-form-field>
+                     <br>
+
+                     <mat-form-field class="example-full-width" id="width50percent">
+                        <input matInput formControlName="userName" placeholder="Korisničko ime">
+                     </mat-form-field>
+                     <br>
+
+                     <mat-form-field class="example-full-width" id="width50percent">
+                        <input matInput formControlName="password" placeholder="Lozinka">
+                     </mat-form-field>
+                     <br>
+
+                     <div>
+                        <button mat-flat-button color="primary" (click)="createNurse()">Kreiraj doktora</button>
+                     </div>
+
+                  </form>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </mat-tab>
+
+   <mat-tab label="Registruj farmaceuta">
+      <div class="jumbotron">
+         <div class="container">
+            <div class="row" style="justify-content: center;">
+               <div style="width: 100%; margin: 0 auto;">
+
+                  <form [formGroup]="pharmacyModel" class="example-form" style="width: 100%; text-align: center;">
+
+                     <mat-form-field class="example-full-width" id="width50percent">
+                        <input matInput formControlName="firstName" placeholder="Ime farmaceuta">
+                     </mat-form-field>
+                     <br>
+
+                     <mat-form-field class="example-full-width" id="width50percent">
+                        <input matInput formControlName="lastName" placeholder="Prezime farmaceuta">
+                     </mat-form-field>
+                     <br>
+
+                     <mat-form-field class="example-full-width" id="width50percent">
+                        <input matInput formControlName="userName" placeholder="Korisničko ime">
+                     </mat-form-field>
+                     <br>
+
+                     <mat-form-field class="example-full-width" id="width50percent">
+                        <input matInput formControlName="password" placeholder="Lozinka">
+                     </mat-form-field>
+                     <br>
+
+                     <div>
+                        <button mat-flat-button color="primary" (click)="createPharmacy()">Kreiraj doktora</button>
+                     </div>
+
+                  </form>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </mat-tab>
+</mat-tab-group>

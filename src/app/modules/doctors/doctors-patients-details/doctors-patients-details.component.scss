@@ -1,0 +1,71 @@
+.flex-fill {
+  -ms-flex: 1 1 auto !important;
+  flex: 1 1 auto !important;
+}
+.full-width {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 1px solid #999999;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+tbody tr {
+  height: 50px;
+}
+
+table tr:nth-child(odd) {
+  background-color: rgba(0,0,0,.04);
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f3f8;
+}
+
+#buttons {
+  width: 90%;
+  display: inline-block;
+  text-align: center;
+}
+
+#discardChangesBtn,
+#acceptChangesBtn {
+  border: 1px solid #999999;
+  border-radius: 5px;
+  width: 100px;
+  display: inline-block;
+}
+
+#acceptChangesBtn {
+  margin-left: 25px;
+}
+
+#discardChangesBtn button,
+#acceptChangesBtn button {
+  outline: none;
+  box-shadow: none;
+}
+
+#patientName {
+   float: left;
+   border-bottom: 1px solid #999999;
+}
+
+#newRecordButton {
+   border: 1px solid #999999;
+   border-radius: 5px;
+   margin-bottom: 25px;
+   width: 150px;
+   float: right;
+}
+
+#newReceptButton {
+   border: 1px solid #999999;
+   border-radius: 5px;
+   margin-bottom: 25px;
+   width: 150px;
+}

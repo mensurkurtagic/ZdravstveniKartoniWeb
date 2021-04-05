@@ -1,0 +1,30 @@
+
+
+<div class="container-fluid" style="margin-top: 25px;">
+
+   <mat-form-field class="ml-auto pr-3 mb-0 pb-0" appearance="outline">
+      <mat-label>Pretraga</mat-label>
+      <input matInput (keyup)="applyFilter($event.target.value)">
+      <mat-icon matPrefix>search</mat-icon>
+   </mat-form-field>
+
+   <div id="buttonNew" style="float: right;">
+      <button [routerLink]="['createNewPatient']" mat-button class="btn" type="button"><span style="font-size: larger; color: red; margin-right: 5px;"><strong>+</strong></span><strong>Novi karton</strong></button>
+   </div>
+
+   <div class="card-columns">
+      <div *ngFor="let patients of doctorsPatients;" class="card" style="margin-bottom: 25px; border: 1px solid #999999;">
+         <div class="card-body text-center" style="background-color: #007bff;">
+            <h3 class="card-title" style="color: white;">{{patients.firstName}} {{patients.lastName}}</h3>
+         </div>
+         <ul class="list-group list-group-flush">
+            <li class="list-group-item"> Datum rođenja: {{patients.dateOfBirth}}</li>
+            <li class="list-group-item"> Krvna grupa: {{patients.bloodType}}</li>
+            <li class="list-group-item"> Broj kartona: {{patients.userId}}</li>
+         </ul>
+         <div class="card-body text-center" style="height: 50px;">
+            <a [routerLink]="['/doctors', patients.userId]" class="card-linl"><strong>Idi na profil</strong></a>
+         </div>
+      </div>
+   </div>
+</div>

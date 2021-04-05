@@ -1,0 +1,60 @@
+<div style="width: 100%;">
+   <div class="container">
+      <h3 style="text-align: center;">Kreirajte novi termin</h3>
+      <form [formGroup]="appointmentModel">
+         <div style="margin-top: 25px;">
+            <div class="d-flex flex-row ml-2 mr-2" style="margin-top: 10px;">
+               <div class="p-2 flex-fill">
+                  <mat-form-field class="full-width" appearance="fill">
+                     <mat-label>Doktor</mat-label>
+                     <input matInput placeholder="Doktor" formControlName="doctorsName">
+                  </mat-form-field>
+               </div>
+               <div class="p-2 flex-fill">
+                  <!-- <mat-form-field class="full-width" appearance="fill">
+                     <mat-label>Datum/vrijeme</mat-label>
+                     <input matInput placeholder="Datum posjete" formControlName="dateOfAppointment">
+                  </mat-form-field> -->
+
+                  <!-- <mat-form-field class="full-width" appearance="fill">
+                     <mat-label>Datum/vrijeme</mat-label>
+                     <input matInput placeholder="Datum posjete" [matDatepicker]="picker"
+                        formControlName="dateOfAppointment">
+                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                     <mat-datepicker touchUi #picker></mat-datepicker>
+                  </mat-form-field> -->
+
+                  <mat-form-field class="full-width" appearance="fill">
+                     <mat-label>Datum/vrijeme</mat-label>
+                     <input matInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Datum/vrijeme" formControlName="dateOfAppointment">
+                     <owl-date-time #dt1></owl-date-time>
+                  </mat-form-field>
+               </div>
+            </div>
+
+            <div class="d-flex flex-row ml-2 mr-2" style="margin-top: 10px;">
+               <div class="p-2 flex-fill">
+                  <mat-form-field class="full-width" appearance="fill">
+                     <mat-label>Razlog posjete</mat-label>
+                     <input matInput placeholder="Razlog posjete" formControlName="reasonForVisit">
+                  </mat-form-field>
+               </div>
+            </div>
+
+         </div>
+      </form>
+
+      <div id="buttons">
+         <div id="discardChangesBtn">
+            <button mat-button class="btn" type="button" (click)="discardChanges()"><span
+                  style="color: red; margin-right: 5px;"><strong>X</strong></span><strong>Odustani</strong></button>
+         </div>
+         <div id="acceptChangesBtn">
+            <button mat-button class="btn" type="button" (click)="createNewAppointment()"><span
+                  style="color: green; margin-right: 5px;"><strong>
+                     <mat-icon style="vertical-align: middle;">check</mat-icon>
+                  </strong></span><strong>Spremi</strong></button>
+         </div>
+      </div>
+   </div>
+</div>
